@@ -33,6 +33,21 @@ const Mutation = {
     db.posts.push(post);
     return post;
   },
+  createComment(parent, args, { db }, info) {
+    const postExists = db.posts.some((post) => post.id === args.data.post);
+
+    if (!postExists) {
+      throw new Error("Post does not exist");
+    }
+
+    const comment = {
+      ...args.data,
+    };
+
+    db.comments.push(comment);
+
+    return comment;
+  },
 };
 
 export { Mutation as default };
