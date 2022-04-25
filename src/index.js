@@ -7,6 +7,7 @@ const typeDefs = `
     type Query {
         users(query: String): [User!]!
         posts(query: String): [Post!]!
+        comments: [Comment!]!
     }
 
 
@@ -24,6 +25,15 @@ const typeDefs = `
         body: String!
         author: User!
         published: Boolean!
+        comments: [Comment!]!
+    }
+
+
+    type Comment {
+        id: ID!
+        text: String!
+        author: User!
+        post: Post!
     }
 `;
 
@@ -55,6 +65,18 @@ const resolvers = {
 
         return isTitleMatch || isBodyMatch;
       });
+    },
+
+    comments(parent, args, ctx, info) {
+      return comments;
+    },
+  },
+  Post: {
+    author(parent, args, ctx, info) {
+      return users.find((user) => user.id === parent.author);
+    },
+    comments(parent, args, ctx, info) {
+      return comments.filter((comment) => comment.post === parent.id);
     },
   },
 };
