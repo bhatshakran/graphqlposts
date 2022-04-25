@@ -9,15 +9,14 @@ import Post from "./resolvers/Post";
 const server = createServer({
   schema: {
     typeDefs: typeDef,
+
     resolvers: {
       Query,
       User,
       Post,
       Comment,
     },
-    context: {
-      db,
-    },
   },
+  context: { db },
 });
 server.start();

@@ -1,19 +1,19 @@
 const Query = {
-  users(parent, args, ctx, info) {
+  users(parent, args, { db }, info) {
     if (!args.query) {
-      return users;
+      return db.users;
     }
-    return users.filter((user) =>
+    return db.users.filter((user) =>
       user.name.toLowerCase().includes(args.query.toLowerCase())
     );
   },
 
-  posts(parent, args, ctx, info) {
+  posts(parent, args, { db }, info) {
     if (!args.query) {
-      return posts;
+      return db.posts;
     }
 
-    return posts.filter((post) => {
+    return db.posts.filter((post) => {
       const isTitleMatch = post.title
         .toLowerCase()
         .includes(args.query.toLowerCase());
@@ -25,8 +25,8 @@ const Query = {
     });
   },
 
-  comments(parent, args, ctx, info) {
-    return comments;
+  comments(parent, args, { db }, info) {
+    return db.comments;
   },
 };
 
