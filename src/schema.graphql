@@ -5,6 +5,26 @@ export const typeDef = `
       comments: [Comment!]!
     }
 
+
+    type Mutation {
+      createUser(data: CreateUserInput!) : User!
+      createPost(data: CreatePostInput!): Post!
+    }
+
+
+    input CreateUserInput {
+      name:String!
+      email:String!
+      age: Int
+    }
+
+    input CreatePostInput {
+      title: String!
+      body: String!
+      published: Boolean!
+      author: ID!
+    }
+
     type User {
       id: ID!
       name: String!
