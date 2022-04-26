@@ -11,6 +11,7 @@ export const typeDef = `
       deleteUser(id: ID!): User
       updateUser(id: ID!, data: UpdateUserInput!): User!
       createPost(data: CreatePostInput!): Post!
+      updatePost(id: ID!, data: UpdatePostInput!): Post!
       deletePost(id: ID!): Post!
       createComment(data: CreateCommentInput!):  Comment!
       deleteComment(id: ID!): Comment!
@@ -34,6 +35,12 @@ export const typeDef = `
       body: String!
       published: Boolean!
       author: ID!
+    }
+
+    input UpdatePostInput {
+      title: String
+      body: String
+      published: Boolean
     }
 
     input CreateCommentInput{
