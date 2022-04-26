@@ -82,6 +82,20 @@ const Mutation = {
 
     return comment;
   },
+
+  deleteComment(parent, args, { db }, info) {
+    const commentIndex = db.comments.findIndex(
+      (comment) => comment.id === args.id
+    );
+
+    if (commentIndex === -1) {
+      throw new Error("Comment not found");
+    }
+
+    const deletedComment = db.comments.splice(commentIndex, 1);
+
+    return deletedComment[0];
+  },
 };
 
 export { Mutation as default };
