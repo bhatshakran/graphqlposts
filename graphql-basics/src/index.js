@@ -13,6 +13,7 @@ const server = createServer({
     resolvers: {
       Query,
       Mutation,
+
       User,
       Post,
       Comment,
