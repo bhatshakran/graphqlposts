@@ -1,0 +1,30 @@
+version: '3'
+services:
+  prisma:
+    image: prismagraphql/prisma:1.34
+    restart: always
+    ports:
+      - '4466:4466'
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: postgres
+            host: ec2-52-86-56-90.compute-1.amazonaws.com
+            port: 5432
+            database: d7qf73ln7r128s
+            user: vektvlbtcmrclt
+            password: 7f6d8a6e52043ebc99cf195ce9072377d076a1195e90d7d56261de63135b5bc2
+            ssl: true
+            migrations: true
+  postgres:
+    image: postgres:10.3
+    restart: always
+    environment:
+      POSTGRES_USER: shakranbhat
+      POSTGRES_PASSWORD: Munazah667
+    volumes:
+      - postgres:/var/lib/postgresql/data
+volumes:
+  postgres: ~
