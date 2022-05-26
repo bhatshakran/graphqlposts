@@ -16,12 +16,16 @@
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "graphql-cli": "^4.1.0",
+    "graphql": "^14.7.0",
     "graphql-yoga": "^2.3.0",
     "prisma-binding": "^2.3.16",
     "uuid": "^8.3.2"
   },
+  "resolutions": {
+    "graphql": "14.0.0"
+  },
   "devDependencies": {
+    "graphql-cli": "^4.1.0",
     "nodemon": "^2.0.15"
   }
 }
