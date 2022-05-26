@@ -2,6 +2,7 @@ type User {
   id: ID! @id
   name: String!
   email: String! @unique
+  posts: [Post!]!
 }
 
 type Post {
@@ -10,5 +11,11 @@ type Post {
       body: String!
       author: User!
       published: Boolean!
-    }
+}
 
+ type Comment {
+      id: ID! @id
+      text: String!
+      author: User!
+      post: Post!
+}
