@@ -6,6 +6,9 @@ const prisma = new Prisma({
 });
 
 
+export { prisma as default };
+
+
 
 // prisma.query.comments(null, "{text, author{id name}}").then((data) => {
 //   console.log(JSON.stringify(data, undefined, 2));
@@ -59,25 +62,25 @@ const prisma = new Prisma({
 
 // using async await
 
-const createPostForUser = async(authorId, data) => {
-  const post = await prisma.mutation.createPost({
-    data:{
-      ...data,
-      author:{
-        connect:{
-          id: authorId
-        }
-      }
-    }
-  }, '{id}')
+// const createPostForUser = async(authorId, data) => {
+//   const post = await prisma.mutation.createPost({
+//     data:{
+//       ...data,
+//       author:{
+//         connect:{
+//           id: authorId
+//         }
+//       }
+//     }
+//   }, '{id}')
 
-  const user = await prisma.query.user({
-    where:{
-      id: authorId
-    }
-  }, '{id name email posts {id title published} }')
-  return user
-}
+//   const user = await prisma.query.user({
+//     where:{
+//       id: authorId
+//     }
+//   }, '{id name email posts {id title published} }')
+//   return user
+// }
 
 
 // createPostForUser('cl3mjxa8k001809255uf9jno1', {
@@ -113,25 +116,25 @@ const createPostForUser = async(authorId, data) => {
 //       });
 
 // using prisma.exists
-const updatePostForUser = async (postId, data) => {
-  const postExists = await prisma.exists.Post({ id: postId });
+// const updatePostForUser = async (postId, data) => {
+//   const postExists = await prisma.exists.Post({ id: postId });
 
-  if (!postExists) {
-    throw new Error("Post does not exist!");
-  }
+//   if (!postExists) {
+//     throw new Error("Post does not exist!");
+//   }
 
-  const post = await prisma.mutation.updatePost(
-    {
-      where: {
-        id: postId,
-      },
-      data,
-    },
-    "{author {id name email posts { id title published} } }"
-  );
+//   const post = await prisma.mutation.updatePost(
+//     {
+//       where: {
+//         id: postId,
+//       },
+//       data,
+//     },
+//     "{author {id name email posts { id title published} } }"
+//   );
 
-  return post.author;
-};
+//   return post.author;
+// };
 
 
 

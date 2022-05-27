@@ -6,7 +6,7 @@ import Query from "./resolvers/Query";
 import Comment from "./resolvers/Comment";
 import Post from "./resolvers/Post";
 import Mutation from "./resolvers/Mutation";
-import "./prisma";
+import prisma from "./prisma";
 
 const server = createServer({
   schema: {
@@ -19,6 +19,6 @@ const server = createServer({
       Comment,
     },
   },
-  context: { db },
+  context: { db, prisma },
 });
 server.start();
