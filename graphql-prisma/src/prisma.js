@@ -136,8 +136,8 @@ const updatePostForUser = async (postId, data) => {
 
 
 
-updatePostForUser('cl3mk5tim007i0925v1dkp1ew', {published: true}).then((user) => {
-  console.log(JSON.stringify(user, undefined, 2))
-}).catch(err => {
-  console.log(err.message)
-})
+// updatePostForUser('cl3mk5tim007i0925v1dkp1ew', {published: true}).then((user) => {
+//   console.log(JSON.stringify(user, undefined, 2))
+// }).catch(err => {
+//   console.log(err.message)
+// })
