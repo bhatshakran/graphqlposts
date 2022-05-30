@@ -1,7 +1,11 @@
-schema: http://localhost:4466
-extensions:
-  codegen:
-    generates:
-      ./src/generated/schema.graphql:
-        plugins:
-          - schema-ast
+projects:
+  app:
+    schema: http://localhost:4466
+  database: 
+    schema: prisma/prisma.yml
+    extensions:
+      codegen:
+        generates:
+          ./src/generated/schema.graphql:
+            plugins:
+              - schema-ast

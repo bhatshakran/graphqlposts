@@ -1,6 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 
 const Mutation = {
+  // broadcastRandomNumber: (parent, args, { pubSub }, info) => {
+  //   // publish a random number
+  //   pubSub.publish("randomNumber", Math.random());
+  // },
   createUser(parent, args, { db }, info) {
     const emailTaken = db.users.some((user) => user.email === args.data.email);
 
@@ -117,7 +121,7 @@ const Mutation = {
     db.comments = db.comments.filter((comment) => comment.post !== args.id);
     return deletedPost[0];
   },
-  createComment(parent, args, { db, pubsub }, info) {
+  createComment(parent, args, { db, pubSub }, info) {
     const userExists = db.users.some((user) => user.id === args.data.author);
     const postExists = db.posts.some((post) => post.id === args.data.post);
 
@@ -127,10 +131,11 @@ const Mutation = {
 
     const comment = {
       ...args.data,
+      id: uuidv4(),
     };
 
     db.comments.push(comment);
-    pubsub.publish(`comment ${args.data.post}`, { comment });
+    pubSub.publish(`comment ${postId}`, { comment });
 
     return comment;
   },

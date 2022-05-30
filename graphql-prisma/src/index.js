@@ -1,4 +1,4 @@
-import { createServer } from "@graphql-yoga/node";
+import { createServer, createPubSub } from "@graphql-yoga/node";
 import db from "./db";
 import { typeDef } from "./schema.graphql";
 import User from "./resolvers/User";
@@ -6,7 +6,10 @@ import Query from "./resolvers/Query";
 import Comment from "./resolvers/Comment";
 import Post from "./resolvers/Post";
 import Mutation from "./resolvers/Mutation";
+import Subscription from "./resolvers/Subscription";
 import prisma from "./prisma";
+
+const pubSub = createPubSub();
 
 const server = createServer({
   schema: {
@@ -14,11 +17,16 @@ const server = createServer({
     resolvers: {
       Query,
       Mutation,
+      Subscription,
       User,
       Post,
       Comment,
     },
   },
-  context: { db, prisma },
+  context: (initialContext) => {
+    const authHeader = initialContext.request.headers.get("authorization");
+
+    return { db, authHeader, pubSub, prisma };
+  },
 });
 server.start();

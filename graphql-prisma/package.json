@@ -6,13 +6,11 @@
   "scripts": {
     "start": "nodemon src/index.js --ext js,graphql --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "get-schema": "graphql-codegen"
+    "get-schema": "graphql-codegen --project database"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@graphql-cli/codegen": "^2.2.3",
-    "@graphql-codegen/schema-ast": "^2.4.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -25,7 +23,8 @@
     "graphql": "14.0.0"
   },
   "devDependencies": {
-    "graphql-cli": "^4.1.0",
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/schema-ast": "^2.4.1",
     "nodemon": "^2.0.15"
   }
 }
